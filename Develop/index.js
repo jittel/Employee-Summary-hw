@@ -45,11 +45,7 @@ async function promptUser() {
             name: "email",
             message: "What is your email?"
         },
-        {
-            type: "input",
-            name: "github",
-            message: "What is your github?"
-        }
+        
     ]);
     console.log(employee)
 
@@ -57,7 +53,6 @@ async function promptUser() {
     let role = JSON.stringify(employee.role);
     let id = JSON.stringify(employee.id);
     let email = JSON.stringify(employee.email);
-    let github = JSON.stringify(employee.github);
     let path = employee.role
 
     try {
@@ -67,13 +62,21 @@ async function promptUser() {
         switch (path) {
             case "intern":
                 //stuff here
+
+                let schoo = await inquirer.prompt(
+                    {
+                        type: "input",
+                        name: "school",
+                        message: "What school did you go to?"
+                    })
+                    let school = JSON.stringify(schoo.school);
                 const intern = `<div class="card" style="width: 18rem;">
 <div class="card-body">
   <h5 class="card-title">${name}</h5>
   <h6 class="card-subtitle mb-2 text-muted">${role}</h6>
   <p class="card-text">ID: ${id}</p>
-  <a href="#" class="card-link">${email}</a>
-  <a href=${github} class="card-link">github</a>
+  <p class="card-text">email: ${email}</p>
+  <p class="card-text">school: ${school}</p>
 </div>
 </div>`
                 fs.appendFile("index.html", intern, function (err) {
@@ -86,12 +89,21 @@ async function promptUser() {
 
             case "engineer":
                 //stuff here
+
+                let gitty = await inquirer.prompt(
+                {
+                    type: "input",
+                    name: "github",
+                    message: "What is your github?"
+                })
+                let github = JSON.stringify(gitty.github);
+
                 const engineer = `<div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">${name}</h5>
               <h6 class="card-subtitle mb-2 text-muted">${role}</h6>
               <p class="card-text">ID: ${id}</p>
-              <a href="#" class="card-link">${email}</a>
+              <p class="card-text">email: ${email}</p>
               <a href=${github} class="card-link">github</a>
             </div>
             </div>`
@@ -102,13 +114,20 @@ async function promptUser() {
 
             case "manager":
                 //stuff here
+                let roo = await inquirer.prompt(
+                    {
+                        type: "input",
+                        name: "room",
+                        message: "What is your office number?"
+                    })
+                    let room = JSON.stringify(roo.room);
                 const manager = `<div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">${name}</h5>
               <h6 class="card-subtitle mb-2 text-muted">${role}</h6>
               <p class="card-text">ID: ${id}</p>
-              <a href="#" class="card-link">${email}</a>
-              <a href=${github} class="card-link">github</a>
+              <p class="card-text">email: ${email}</p>
+              <p class="card-text">office number: ${room}</p>
             </div>
             </div>`
                 appendFileAsync("index.html", manager, "utf8")
